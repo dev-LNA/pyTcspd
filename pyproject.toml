@@ -1,0 +1,37 @@
+[project]
+name = "py-tcspd"
+version = "0.1.0"
+description = "Python client for the LNA's controller protocol"
+license = "GPL-2.0-or-later"
+authors = [
+    { name = "Artur Camera Segat", email = "artur.segat@ecomp.ufsm.br" },
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyserial>=3.5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.3",
+    "ruff>=0.9.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["N", "I", "UP", "F"]
+
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "(?i)# SPDX-FileCopyrightText:\\s\\d{4}(-(\\d{4}|present))*"
