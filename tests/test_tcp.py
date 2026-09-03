@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from lna_controller.tcp import TcpSender
+from pyTcspd.tcp import TcpSender
 
 
 class FakeSocket:
@@ -28,7 +28,7 @@ def test_tcp_sender_uses_endpoint_and_cr_framing(monkeypatch) -> None:
     fake = FakeSocket()
     calls = []
     monkeypatch.setattr(
-        "lna_controller.tcp.socket.create_connection",
+        "pyTcspd.tcp.socket.create_connection",
         lambda address, timeout: calls.append((address, timeout)) or fake,
     )
     sender = TcpSender(timeout_s=3)

@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pytest
 
-from lna_controller import Command, Controller, TcsPdCommands, TcsPdStatus, TcsPdStatusParser
-from lna_controller.interfaces import Response
-from lna_controller.commands import (
+from pyTcspd import Command, Controller, TcsPdCommands, TcsPdStatus, TcsPdStatusParser
+from pyTcspd.interfaces import Response
+from pyTcspd.commands import (
     CommandResponseError,
     CommandValidationError,
 )
@@ -36,11 +36,11 @@ def test_default_commands_cover_dome_and_protocol_parameters() -> None:
     assert commands.move_dec_to("01 23 45.6")[0] == (
         "DEC EIXO MOVER_ABS = 01 23 45.6"
     )
-    assert commands.move_ah_by("00 05 20.4")[0] == "AH EIXO MOVER_REL = 00 05 20.4"
+    assert commands.move_ha_by("00 05 20.4")[0] == "AH EIXO MOVER_REL = 00 05 20.4"
     assert commands.guide_dec_by("00 00 01.0")[0] == "DEC EIXO GUIAR_REL = 00 00 01.0"
-    assert commands.shift_ah(10)[0] == "AH EIXO SHIFT = 10"
+    assert commands.shift_ha(10)[0] == "AH EIXO SHIFT = 10"
     assert commands.rotate_dec(20)[0] == "DEC EIXO GIRAR_VEL = 20"
-    assert commands.set_ah_sidereal_tracking(True)[0] == "AH EIXO SIDERAL = LIGAR"
+    assert commands.set_ha_sidereal_tracking(True)[0] == "AH EIXO SIDERAL = LIGAR"
     assert commands.set_dec_sidereal_tracking(False)[0] == "DEC EIXO SIDERAL = DESLIGAR"
     assert commands.stop_dome_slit()[0] == "MEADE TRAP PARAR"
     assert commands.select_uart(2)[0] == "MEADE UART1 COM2"
@@ -116,7 +116,7 @@ def test_status_command_addresses_are_explicit() -> None:
     commands = TcsPdCommands()
     assert commands.status_dome()[0] == "MEADE PROG STATUS"
     assert commands.status_cupola()[0] == "CUP PROG STATUS"
-    assert commands.status_ah()[0] == "AH PROG STATUS"
+    assert commands.status_ha()[0] == "AH PROG STATUS"
     assert commands.status_dec()[0] == "DEC PROG STATUS"
 
 

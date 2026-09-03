@@ -1,6 +1,6 @@
 """Move the dome and read its status through a serial connection."""
 
-from lna_controller import Controller, SerialSender, TcsPdCommands
+from pyTcspd import Controller, SerialSender, TcsPdCommands
 
 
 def main() -> None:

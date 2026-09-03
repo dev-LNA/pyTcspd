@@ -1,6 +1,6 @@
 """Move both telescope axes and read an axis status."""
 
-from lna_controller import Controller, SerialSender, TcsPdCommands
+from pyTcspd import Controller, SerialSender, TcsPdCommands
 
 
 def main() -> None:
@@ -12,11 +12,11 @@ def main() -> None:
 
     controller.open("/dev/ttyUSB0")
     try:
-        controller.send(commands.move_ah_to("10 30 45.6"))
+        controller.send(commands.move_ha_to("10 30 45.6"))
         controller.send(commands.move_dec_to("20 00 00.0", fast=True))
-        controller.send(commands.set_ah_sidereal_tracking(True))
+        controller.send(commands.set_ha_sidereal_tracking(True))
 
-        status = controller.send(commands.status_ah())
+        status = controller.send(commands.status_ha())
         print(f"position={status.value} tracking={status.fields['tracking']}")
 
         controller.send(commands.stop())

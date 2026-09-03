@@ -51,7 +51,7 @@ class TcsPdCommands:
     def status_cupola(self) -> Command[TcsPdStatus]:
         return ("CUP PROG STATUS", TcsPdStatusParser("CUP"))
 
-    def status_ah(self) -> Command[TcsPdStatus]:
+    def status_ha(self) -> Command[TcsPdStatus]:
         return ("AH PROG STATUS", TcsPdStatusParser("AH"))
 
     def status_dec(self) -> Command[TcsPdStatus]:
@@ -107,7 +107,7 @@ class TcsPdCommands:
             raise CommandValidationError(f"Unsupported flat: {flat}")
         return self._response(f"MEADE {flat} DESLIGAR")
 
-    def move_ah_to(self, position: str, *, fast: bool = False) -> Command[Response]:
+    def move_ha_to(self, position: str, *, fast: bool = False) -> Command[Response]:
         self._validate_axis("AH", position)
         return self._response(f"AH EIXO {'MOVER_RAP' if fast else 'MOVER_ABS'} = {position}")
 
@@ -115,7 +115,7 @@ class TcsPdCommands:
         self._validate_axis("DEC", position)
         return self._response(f"DEC EIXO {'MOVER_RAP' if fast else 'MOVER_ABS'} = {position}")
 
-    def move_ah_by(self, displacement: str) -> Command[Response]:
+    def move_ha_by(self, displacement: str) -> Command[Response]:
         self._validate_axis("AH", displacement)
         return self._response(f"AH EIXO MOVER_REL = {displacement}")
 
@@ -123,7 +123,7 @@ class TcsPdCommands:
         self._validate_axis("DEC", displacement)
         return self._response(f"DEC EIXO MOVER_REL = {displacement}")
 
-    def guide_ah_by(self, correction: str) -> Command[Response]:
+    def guide_ha_by(self, correction: str) -> Command[Response]:
         self._validate_axis("AH", correction)
         return self._response(f"AH EIXO GUIAR_REL = {correction}")
 
@@ -131,7 +131,7 @@ class TcsPdCommands:
         self._validate_axis("DEC", correction)
         return self._response(f"DEC EIXO GUIAR_REL = {correction}")
 
-    def shift_ah(self, centi_arcseconds: int) -> Command[Response]:
+    def shift_ha(self, centi_arcseconds: int) -> Command[Response]:
         if abs(int(centi_arcseconds)) > 1000:
             raise CommandValidationError("SHIFT is limited to +/-1000")
         return self._response(f"AH EIXO SHIFT = {int(centi_arcseconds)}")
@@ -141,25 +141,25 @@ class TcsPdCommands:
             raise CommandValidationError("SHIFT is limited to +/-1000")
         return self._response(f"DEC EIXO SHIFT = {int(centi_arcseconds)}")
 
-    def rotate_ah(self, milli_arcseconds: int) -> Command[Response]:
+    def rotate_ha(self, milli_arcseconds: int) -> Command[Response]:
         return self._response(f"AH EIXO GIRAR_VEL = {int(milli_arcseconds)}")
 
     def rotate_dec(self, milli_arcseconds: int) -> Command[Response]:
         return self._response(f"DEC EIXO GIRAR_VEL = {int(milli_arcseconds)}")
 
-    def read_ah_hand_controller(self) -> Command[Response]:
+    def read_ha_hand_controller(self) -> Command[Response]:
         return self._response("AH EIXO MANETE")
 
     def read_dec_hand_controller(self) -> Command[Response]:
         return self._response("DEC EIXO MANETE")
 
-    def release_ah_limit(self) -> Command[Response]:
+    def release_ha_limit(self) -> Command[Response]:
         return self._response("AH EIXO LIBERAR")
 
     def release_dec_limit(self) -> Command[Response]:
         return self._response("DEC EIXO LIBERAR")
 
-    def set_ah_sidereal_tracking(self, enabled: bool) -> Command[Response]:
+    def set_ha_sidereal_tracking(self, enabled: bool) -> Command[Response]:
         return self._response(f"AH EIXO SIDERAL = {'LIGAR' if enabled else 'DESLIGAR'}")
 
     def set_dec_sidereal_tracking(self, enabled: bool) -> Command[Response]:

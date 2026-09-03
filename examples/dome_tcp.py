@@ -1,6 +1,6 @@
 """Read the dome status through a TCP connection."""
 
-from lna_controller import Controller, TcpSender, TcsPdCommands
+from pyTcspd import Controller, TcpSender, TcsPdCommands
 
 
 def main() -> None:

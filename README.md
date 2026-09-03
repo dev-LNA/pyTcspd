@@ -5,7 +5,7 @@ Python client for interfacing with LNA's Telescope Control System controller's f
 
 Simple example, see [examples](examples/) for more.
 ```python
-from lna_controller import Controller, SerialSender, TcsPdCommands
+from pyTcspd import Controller, SerialSender, TcsPdCommands
 
 commands = TcsPdCommands()
 controller = Controller(SerialSender(timeout_s=10), commands)

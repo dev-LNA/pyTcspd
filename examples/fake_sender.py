@@ -1,6 +1,6 @@
 """Use the controller without hardware for a simple local smoke test."""
 
-from lna_controller import Controller, TcsPdCommands
+from pyTcspd import Controller, TcsPdCommands
 
 
 class FakeSender:
