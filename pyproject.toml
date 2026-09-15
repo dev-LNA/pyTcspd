@@ -1,5 +1,5 @@
 [project]
-name = "py-tcspd"
+name = "pyTcspd"
 version = "0.1.0"
 description = "Python client for the LNA's controller protocol"
 license = "GPL-2.0-or-later"
