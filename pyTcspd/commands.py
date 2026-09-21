@@ -26,7 +26,7 @@ class TcsPdCommands:
         r"PROG (?:STATUS|PARAR|RESET|ERROS|VERSAO|INPUTS|GRAVAR)"
         r"|UART1 (?:LINK|COM[12])"
         r"|DOMO MOVER = \d{3}"
-        r"|TRAP (?:ABRIR|FECHAR|PARAR)"
+        r"|TRAPEIRA (?:ABRIR|FECHAR|PARAR)"
         r"|(?:FLAT_WEAK|FLAT_LO|FLAT_HI|FLAT_COUDE) (?:LIGAR|DESLIGAR)"
         r"|EIXO (?:MOVER_ABS|MOVER_RAP|MOVER_REL|GUIAR_REL|SHIFT|GIRAR_VEL|MANETE|LIBERAR|SIDERAL)(?: = .+)?"
         r"|INVERSOR (?:DI|[PV]\d+)(?: = .+)?"
@@ -89,13 +89,13 @@ class TcsPdCommands:
         return self._response(f"MEADE DOMO MOVER = {int(tag):03d}")
 
     def open_dome_slit(self) -> Command[Response]:
-        return self._response("MEADE TRAP ABRIR")
+        return self._response("MEADE TRAPEIRA ABRIR")
 
     def close_dome_slit(self) -> Command[Response]:
-        return self._response("MEADE TRAP FECHAR")
+        return self._response("MEADE TRAPEIRA FECHAR")
 
     def stop_dome_slit(self) -> Command[Response]:
-        return self._response("MEADE TRAP PARAR")
+        return self._response("MEADE TRAPEIRA PARAR")
 
     def turn_lamp_on(self, flat: str = "FLAT_WEAK") -> Command[Response]:
         if flat not in self._flats:

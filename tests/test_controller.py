@@ -42,7 +42,7 @@ def test_default_commands_cover_dome_and_protocol_parameters() -> None:
     assert commands.rotate_dec(20)[0] == "DEC EIXO GIRAR_VEL = 20"
     assert commands.set_ha_sidereal_tracking(True)[0] == "AH EIXO SIDERAL = LIGAR"
     assert commands.set_dec_sidereal_tracking(False)[0] == "DEC EIXO SIDERAL = DESLIGAR"
-    assert commands.stop_dome_slit()[0] == "MEADE TRAP PARAR"
+    assert commands.stop_dome_slit()[0] == "MEADE TRAPEIRA PARAR"
     assert commands.select_uart(2)[0] == "MEADE UART1 COM2"
 
 
